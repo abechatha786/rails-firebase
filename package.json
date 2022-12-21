@@ -1,0 +1,7 @@
+{
+  "name": "rails-firebase",
+  "private": true,
+  "dependencies": {
+    "firebase": "^9.15.0"
+  }
+}
