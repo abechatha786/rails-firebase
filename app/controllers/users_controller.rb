@@ -22,9 +22,11 @@ class UsersController < ApplicationController
 
         if(user_mail.present? && user_localId.present?)
             @user = User.create(email: user_mail, local_id: user_localId)
-            if @user.save
-                redirect_to action: index, notice: "User saved successfully"
+            if @user.save && res.is_a?(Net::HTTPSuccess)
+                render :json => 'user signed up suceesfully'
             end
+        else
+            render :json => data["error"]["message"]
         end
     end
 
@@ -37,15 +39,14 @@ class UsersController < ApplicationController
 
 
         data = JSON.parse(res.body)
-        debugger
         user_mail = data["email"]
         user_localId = data["localId"]
 
         if res.is_a?(Net::HTTPSuccess)
-            session[:user_id] = data['localId']
+            session[:local_id] = data['localId']
             render :json => 'user signed in suceesfully'
         else
-            render :json => 'Oops something went wrong!!!'
+            render :json => data["error"]["message"]
         end
     end
 
