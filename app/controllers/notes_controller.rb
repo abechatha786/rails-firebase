@@ -1,9 +1,7 @@
 class NotesController < ApplicationController
+    before_action :authenticate_user
+
     def index
-        if session[:local_id].nil?
-            render :json => 'User not logged in'
-        else
-            render :json => 'User logged in'
-        end
+        render :json => 'Congrats! you can access your notes now.'
     end
 end
