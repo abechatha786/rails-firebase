@@ -1,25 +1,20 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Rails-firebase Authentication:
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
 This Rails App provides apis to authenticate user from firebase. User can signin after authentication. User will be saved to rails db after successfull signup response from firebase. You can check users in firebase console. If any thing goes wrong firebase will send relevant error messages. You can check user notes if it is authenticated.
 
-* Deployment instructions
+This README would normally document whatever steps are necessary to get the
+* Services (job queues, cache servers, search engines, etc.)
 
-* ...
+### Signup
+* For signup You have to enter your username and password and it will be saved to rails db as well as firebase after successs response. Here are the end-points for sign up.
+* curl --location --request POST 'http://localhost:3000/signup?email=abdullah@test.com&password=abdullah123' \
+
+### Signin
+* User can sign in with authenticated username and password. Below are the request url for sign in
+* curl --location --request POST 'http://localhost:3000/signin?email=abdullah@test.com&password=abdullah123' \
+
+### notes
+* Signed In user can see their notes otherwise error will be raised from firebase.
+* curl --location --request GET 'http://localhost:3000/notes' \
