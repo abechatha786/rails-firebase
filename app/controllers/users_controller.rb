@@ -11,7 +11,7 @@ class UsersController < ApplicationController
         email = params[:email]
         password = params[:password]
 
-        uri = URI('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA8LtZiS69h5Iv_PQOFr7ga3jHb1aj3JNI')
+        uri = URI("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=#{ENV["FIREBASE_KEY"]}")
         res = Net::HTTP.post_form(uri, "email" => email, "password" => password)
 
 
@@ -33,8 +33,7 @@ class UsersController < ApplicationController
     def signin
         email = params[:email]
         password = params[:password]
-
-        uri = URI('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA8LtZiS69h5Iv_PQOFr7ga3jHb1aj3JNI')
+        uri = URI("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=#{ENV["FIREBASE_KEY"]}")
         res = Net::HTTP.post_form(uri, "email" => email, "password" => password)
 
 
